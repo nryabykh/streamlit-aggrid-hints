@@ -1,0 +1,5 @@
+streamlit==1.16.0
+streamlit-aggrid==0.3.3
+pandas==1.5.2
+watchdog
+st-pages==0.3.1

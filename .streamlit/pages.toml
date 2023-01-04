@@ -1,0 +1,14 @@
+[[pages]]
+path = "app.py"
+name = "Home"
+icon = ":house:"
+
+[[pages]]
+path = "pages/styler_page.py"
+name = "Styler Module"
+icon = ":books:"
+
+[[pages]]
+path = "pages/formatter.py"
+name = "AgGrid Formatter"
+icon = ":blue_book:"
