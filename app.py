@@ -1,7 +1,7 @@
 import streamlit as st
 from st_pages import show_pages_from_config
 
-import helper
+from src import helper
 
 st.set_page_config(layout='wide')
 

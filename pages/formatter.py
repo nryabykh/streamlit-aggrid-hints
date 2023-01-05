@@ -1,8 +1,7 @@
 import streamlit as st
 
-import helper
-import styler
-from styler import PINLEFT, PRECISION_TWO
+from src import styler, helper
+from src.styler import PINLEFT, PRECISION_TWO
 
 st.set_page_config(layout='centered')
 

@@ -1,5 +1,3 @@
-import streamlit as st
-
 from st_aggrid import AgGrid
 from st_aggrid.grid_options_builder import GridOptionsBuilder
 from st_aggrid.shared import GridUpdateMode, JsCode
@@ -15,10 +13,6 @@ PRECISION_ZERO = get_numeric_style_with_precision(0)
 PRECISION_ONE = get_numeric_style_with_precision(1)
 PRECISION_TWO = get_numeric_style_with_precision(2)
 PINLEFT = {"pinned": "left"}
-
-
-def get_current_streamlit_theme() -> str:
-    return "streamlit" if not st.get_option("theme.base") else st.get_option("theme.base")
 
 
 def draw_grid(
@@ -65,7 +59,7 @@ def draw_grid(
         allow_unsafe_jscode=True,
         fit_columns_on_grid_load=fit_columns,
         height=min(max_height, (1 + len(df.index)) * 29),
-        theme=theme if theme is not None else get_current_streamlit_theme(),
+        theme=theme,
         key=key,
         custom_css=css
     )
