@@ -31,7 +31,9 @@ def draw_grid(
         max_height: int = MAX_TABLE_HEIGHT,
         wrap_text: bool = False,
         auto_height: bool = False,
-        key=None
+        grid_options: dict = None,
+        key=None,
+        css: dict = None
 ):
     if formatter is None:
         formatter = {}
@@ -49,6 +51,10 @@ def draw_grid(
         wrapText=wrap_text,
         autoHeight=auto_height
     )
+
+    if grid_options is not None:
+        gb.configure_grid_options(**grid_options)
+
     for latin_name, (cyr_name, style_dict) in formatter.items():
         gb.configure_column(latin_name, header_name=cyr_name, **style_dict)
 
@@ -60,19 +66,20 @@ def draw_grid(
         fit_columns_on_grid_load=fit_columns,
         height=min(max_height, (1 + len(df.index)) * 29),
         theme=theme if theme is not None else get_current_streamlit_theme(),
-        key=key
+        key=key,
+        custom_css=css
     )
 
 
-def get_highlighter_by_condition(condition, color):
+def highlight(color, condition):
     code = f"""
-    function(params) {{
-        color = "{color}";
-        if (params.value {condition}) {{
-            return {{
-                'backgroundColor': color
+        function(params) {{
+            color = "{color}";
+            if ({condition}) {{
+                return {{
+                    'backgroundColor': color
+                }}
             }}
-        }}
-    }};
+        }};
     """
     return JsCode(code)
