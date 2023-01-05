@@ -12,3 +12,8 @@ icon = ":books:"
 path = "pages/formatter.py"
 name = "AgGrid Formatter"
 icon = ":blue_book:"
+
+[[pages]]
+path = "pages/highlighting.py"
+name = "Highlighting"
+icon = ":high_brightness:"
