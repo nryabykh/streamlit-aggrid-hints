@@ -2,9 +2,10 @@ import inspect
 from enum import Enum
 
 import streamlit as st
+from st_pages import add_page_title
 
-from src import styler, helper
-from src.styler import PINLEFT, PRECISION_TWO
+from src import agstyler, helper
+from src.agstyler import PINLEFT, PRECISION_TWO
 
 st.set_page_config(layout='wide')
 
@@ -20,8 +21,10 @@ class Color(Enum):
 
 df = helper.get_data(filtered=True).sort_values('raptor_total', ascending=False)
 
+add_page_title()
+
 _, col_center, _ = st.columns((1, 2, 1), gap='large')
-col_center.code(inspect.getsource(styler.highlight))
+col_center.code(inspect.getsource(agstyler.highlight))
 
 col_left, col_right = st.columns(2, gap='large')
 
@@ -36,14 +39,14 @@ with col_left:
             'poss': (
                 'Possessions',
                 {'width': 110,
-                 'cellStyle': styler.highlight(Color.RED_LIGHT.value, condition_one_value)}
+                 'cellStyle': agstyler.highlight(Color.RED_LIGHT.value, condition_one_value)}
             ),
             'raptor_offense': ('RAPTOR Off', {**PRECISION_TWO, 'width': 110}),
             'raptor_defense': (
                 'RAPTOR Def',
                 {**PRECISION_TWO,
                  'width': 110,
-                 'cellStyle': styler.highlight(Color.GREEN_LIGHT.value, condition_other_values)
+                 'cellStyle': agstyler.highlight(Color.GREEN_LIGHT.value, condition_other_values)
                  }
             ),
         }
@@ -70,18 +73,18 @@ with col_right:
         }
 
         # also possible, no custom CSS
-        # go = {'getRowStyle': styler.highlight(Color.GREEN_LIGHT.value, condition_for_row)}
+        # go = {'getRowStyle': agstyler.highlight(Color.GREEN_LIGHT.value, condition_for_row)}
 
 
 col_left, col_right = st.columns(2, gap='large')
 with col_left:
     with st.echo():
-        styler.draw_grid(
+        agstyler.draw_grid(
             df.head(20), formatter_cells, fit_columns=True
         )
 
 with col_right:
     with st.echo():
-        styler.draw_grid(
+        agstyler.draw_grid(
             df.head(20), formatter_rows, fit_columns=True, grid_options=go, css=css
         )

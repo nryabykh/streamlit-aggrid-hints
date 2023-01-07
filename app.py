@@ -5,11 +5,11 @@ from src import helper
 
 st.set_page_config(layout='wide')
 
-st.subheader('Extra Hints for Using Streamlit-AgGrid')
+st.title(':basketball: Extra Hints for Using Streamlit-AgGrid')
 st.info('Annotation. Text about dataset')
 
 df = helper.get_data()
-col_df, col_aggrid = st.columns(2, gap='large')
+col_df, col_aggrid = st.columns((1, 2), gap='large')
 with col_df:
     st.markdown('#### Dataset with st.dataframe')
     with st.echo():

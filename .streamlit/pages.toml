@@ -1,19 +1,24 @@
 [[pages]]
 path = "app.py"
 name = "Home"
-icon = ":house:"
+icon = ":basketball:"
 
 [[pages]]
 path = "pages/styler_page.py"
-name = "Styler Module"
+name = "AgStyler Module"
 icon = ":books:"
 
 [[pages]]
 path = "pages/formatter.py"
 name = "AgGrid Formatter"
-icon = ":blue_book:"
+icon = ":memo:"
 
 [[pages]]
 path = "pages/highlighting.py"
 name = "Highlighting"
 icon = ":high_brightness:"
+
+[[pages]]
+path = "pages/edit.py"
+name = "Edit Cells & Download"
+icon = ":pencil2:"

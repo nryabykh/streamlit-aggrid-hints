@@ -1,11 +1,12 @@
 import streamlit as st
+from st_pages import add_page_title
 
-from src import styler, helper
-from src.styler import PINLEFT, PRECISION_TWO
+from src import agstyler, helper
+from src.agstyler import PINLEFT, PRECISION_TWO
 
 st.set_page_config(layout='centered')
 
-st.subheader('Formatter')
+add_page_title()
 
 with st.echo(code_location='above'):
     df = (
@@ -24,7 +25,7 @@ with st.echo(code_location='above'):
     }
 
     row_number = st.number_input('Number of rows', min_value=0, value=20)
-    data = styler.draw_grid(
+    data = agstyler.draw_grid(
         df.head(row_number),
         formatter=formatter,
         fit_columns=True,
@@ -34,8 +35,7 @@ with st.echo(code_location='above'):
     )
 
 if data['selected_rows']:
-    st.write('**Selected players:**')
     sd = data['selected_rows']
-    st.markdown(
-        '\n\n'.join(f"{p['player_name']} (RAPTOR {p['raptor_total']})" for p in sd)
+    st.info(
+        'Selected players:\n\n' + '\n\n'.join(f"{p['player_name']} (RAPTOR {p['raptor_total']})" for p in sd)
     )

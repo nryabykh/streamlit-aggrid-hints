@@ -3,3 +3,5 @@ streamlit-aggrid==0.3.3
 pandas==1.5.2
 watchdog
 st-pages==0.3.1
+openpyxl==3.0.10
+xlsxwriter==3.0.6
