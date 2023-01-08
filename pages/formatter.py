@@ -20,7 +20,7 @@ with st.echo(code_location='above'):
     formatter = {
         'player_name': ('Player', PINLEFT),
         'team': ('Team', {'width': 80}),
-        'poss': ('Posessions', {'width': 110}),
+        'poss': ('Possessions', {'width': 110}),
         'mp': ('mp', {'width': 80}),
         'raptor_total': ('RAPTOR', {**PRECISION_TWO, 'width': 100}),
         'war_total': ('WAR', {**PRECISION_TWO, 'width': 80}),
