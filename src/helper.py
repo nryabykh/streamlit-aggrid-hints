@@ -6,6 +6,8 @@ import pandas as pd
 import streamlit as st
 from openpyxl.writer.excel import ExcelWriter
 
+from src import badges
+
 
 @st.experimental_memo()
 def get_data(filename='data/latest_RAPTOR_by_team.csv', filtered: bool = True):
@@ -74,3 +76,10 @@ def get_download_link(data, filename: str, caption: str) -> str:
         f'<a href="data:application/vnd.openxmlformats-officedocuments.spreadsheetml.sheet;base64,{b64}" '
         f'download="{filename}">{caption}</a> '
     )
+
+
+def add_badges_to_sidebar(*bs):
+    all_badges: dict = badges.badges
+    for i in range(0, len(bs), 2):
+        line = all_badges[bs[i]].url + all_badges[bs[i + 1]].url
+        st.sidebar.markdown(line)

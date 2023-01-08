@@ -1,4 +1,34 @@
 # streamlit-aggrid-hints
-5 extra hints for using AgGrid in Streamlit apps
+
+This repo contains a source code for a Streamlit application illustrating some tips and tricks about using AgGrid in Streamlit apps. 
+
+Detailed description you can find in this article: [Enhancing your Streamlit tables with AgGrid: advanced tips and tricks | Medium](https://medium.com/@nikolayryabykh/250d4b57903?source=friends_link&sk=e6ca868eb075fee7b4f76899e8ee2708).
 
 Data source: https://data.fivethirtyeight.com/
+
+## Example of usage of `agstyler`
+
+```python
+import agstyler
+from agstyler import PINLEFT, PRECISION_TWO
+
+formatter = {
+    'player_name': ('Player', PINLEFT),
+    'team': ('Team', {'width': 80}),
+    'poss': ('Possessions', {'width': 110}),
+    'mp': ('mp', {'width': 80}),
+    'raptor_total': ('RAPTOR', {**PRECISION_TWO, 'width': 100}),
+    'war_total': ('WAR', {**PRECISION_TWO, 'width': 80}),
+    'pace_impact': ('Pace Impact', {**PRECISION_TWO, 'width': 120})
+}
+
+row_number = st.number_input('Number of rows', min_value=0, value=20)
+data = agstyler.draw_grid(
+    df.head(row_number),
+    formatter=formatter,
+    fit_columns=True,
+    selection='multiple',  # or 'single', or None
+    use_checkbox='True',  # or False by default
+    max_height=300
+)
+```
