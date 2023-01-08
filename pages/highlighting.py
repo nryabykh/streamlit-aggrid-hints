@@ -24,34 +24,42 @@ df = helper.get_data(filtered=True).sort_values('raptor_total', ascending=False)
 add_page_title()
 
 _, col_center, _ = st.columns((1, 2, 1), gap='large')
+col_center.caption("""AgStyler provides a `highlight` function for the highlighting of certain cells. This function 
+takes a specified color and condition and returns a JsCode wrapper that can be used in AgGrid when rendering a 
+table.""")
 col_center.code(inspect.getsource(agstyler.highlight))
 
 col_left, col_right = st.columns(2, gap='large')
 
 with col_left:
+    st.markdown('**Highlight cells**')
     with st.echo():
         condition_one_value = "params.value < 2000"
         condition_other_values = \
-            "params.node.data.raptor_offense < params.node.data.raptor_defense"
+            "params.data.raptor_offense < params.data.raptor_defense"
         formatter_cells = {
             'player_name': ('Player', PINLEFT),
             'team': ('Team', {'width': 80}),
             'poss': (
                 'Possessions',
                 {'width': 110,
-                 'cellStyle': agstyler.highlight(Color.RED_LIGHT.value, condition_one_value)}
+                 'cellStyle': agstyler.highlight(
+                     Color.RED_LIGHT.value, condition_one_value
+                 )}
             ),
             'raptor_offense': ('RAPTOR Off', {**PRECISION_TWO, 'width': 110}),
             'raptor_defense': (
                 'RAPTOR Def',
                 {**PRECISION_TWO,
                  'width': 110,
-                 'cellStyle': agstyler.highlight(Color.GREEN_LIGHT.value, condition_other_values)
-                 }
+                 'cellStyle': agstyler.highlight(
+                     Color.GREEN_LIGHT.value, condition_other_values
+                 )}
             ),
         }
 
 with col_right:
+    st.markdown('**Highlight rows**')
     with st.echo():
         condition_for_row = \
             """params.data.poss > 2000 && 

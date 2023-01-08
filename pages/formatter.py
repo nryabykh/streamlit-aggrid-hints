@@ -7,6 +7,9 @@ from src.agstyler import PINLEFT, PRECISION_TWO
 st.set_page_config(layout='centered')
 
 add_page_title()
+st.caption("""Simple AgGrid table formatting. It covered here how to customize the appearance of the table by 
+specifying which columns to display, formatting the column names and values, setting the column widths, 
+and specifying additional properties.""")
 
 with st.echo(code_location='above'):
     df = (

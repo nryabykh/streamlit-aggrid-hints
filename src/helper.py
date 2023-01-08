@@ -13,10 +13,10 @@ def get_data(filename='data/latest_RAPTOR_by_team.csv', filtered: bool = True):
     return df if not filtered else df.query('poss > 1000')
 
 
-def dataframe_to_excel(df: pd.DataFrame, format_dict=None, sheet_name: str = "Download"):
+def dataframe_to_excel(df: pd.DataFrame, formatter=None, sheet_name: str = "Download"):
     output = io.BytesIO()
 
-    df = prepare_df(df, format_dict)
+    df = prepare_df(df, formatter)
     writer = pd.ExcelWriter(output)
     sheet_name_cropped = sheet_name[:31]  # name of Excel sheet cannot be longer than 31 chars
     df.to_excel(writer, index=False, sheet_name=sheet_name_cropped)
@@ -26,19 +26,19 @@ def dataframe_to_excel(df: pd.DataFrame, format_dict=None, sheet_name: str = "Do
     return output.getvalue()
 
 
-def prepare_df(df: pd.DataFrame, format_dict: dict) -> pd.DataFrame:
+def prepare_df(df: pd.DataFrame, formatter: dict) -> pd.DataFrame:
     """Rename and filter columns, round values"""
 
-    if format_dict is None:
+    if formatter is None:
         return df
 
     rename_dict = {}
     cols = []
-    for k, (new_name, formatter) in format_dict.items():
+    for k, (new_name, formats) in formatter.items():
         if k in df.columns:
             cols.append(k)
-            if "precision" in formatter:
-                df[k] = df[k].apply(lambda x: safe_round(x, formatter["precision"]))
+            if "precision" in formats:
+                df[k] = df[k].apply(lambda x: safe_round(x, formats["precision"]))
 
         rename_dict[k] = new_name
 

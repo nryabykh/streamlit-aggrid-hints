@@ -5,15 +5,26 @@ from src import helper
 
 st.set_page_config(layout='wide')
 
-st.title(':basketball: Extra Hints for Using Streamlit-AgGrid')
-st.info('Annotation. Text about dataset')
+st.title(':basketball: Enhancing Streamlit tables with AgGrid: advanced tips and tricks')
+annotation = """This app was created for illustrating some advanced techniques for working with Streamlit AgGrid. 
+
+I used a dataset from FiveThirtyEight.com containing NBA statistics for the 2022/23 season. In this dataset 
+FiveThirtyEight.com team introduce and use a RAPTOR metric for ranking and scoring NBA players. This statistics "takes 
+advantage of modern NBA data, specifically player tracking and play-by-play data that isn’t available in traditional 
+box scores. Also, it better reflects how modern NBA teams actually evaluate players.".
+ 
+Dataset as well as RAPTOR detailed description are available by this link: 
+https://projects.fivethirtyeight.com/nba-player-ratings/ """
+col_left, _ = st.columns((2, 1), gap='large')
+col_left.caption(annotation)
 
 df = helper.get_data()
-col_df, col_aggrid = st.columns((1, 2), gap='large')
+col_df, col_aggrid = st.columns(2, gap='large')
 with col_df:
     st.markdown('#### Dataset with st.dataframe')
     with st.echo():
         st.dataframe(df.head(50))
+    st.info('End of table')
 
 with col_aggrid:
     st.markdown('#### Dataset with st-aggrid')
@@ -24,5 +35,6 @@ with col_aggrid:
             df.head(50),
             gridOptions=GridOptionsBuilder.from_dataframe(df).build(),
         )
+    st.info('End of table')
 
 show_pages_from_config(".streamlit/pages.toml")

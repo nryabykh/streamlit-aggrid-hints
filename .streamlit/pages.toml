@@ -20,5 +20,5 @@ icon = ":high_brightness:"
 
 [[pages]]
 path = "pages/edit.py"
-name = "Edit Cells & Download"
+name = "Cells Editing"
 icon = ":pencil2:"
