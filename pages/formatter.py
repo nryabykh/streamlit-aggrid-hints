@@ -1,4 +1,5 @@
 import streamlit as st
+from st_aggrid import JsCode
 from st_pages import add_page_title
 
 from src import agstyler, helper
@@ -17,14 +18,32 @@ with st.echo(code_location='above'):
              .query('poss>1000')
              .sort_values('raptor_total', ascending=False)
     )
+    span = """
+    function(params) {
+        var team = params.data.team;
+        if (team === 'PHI') { 
+            return 2; 
+        }
+        else { 
+            return 1; 
+        }
+    };
+    """
+    go = {'suppressRowTransform': True}
+    css = {'.cell-span': {
+      'background-color': '#ffffff'
+    }}
     formatter = {
         'player_name': ('Player', PINLEFT),
-        'team': ('Team', {'width': 80}),
-        'poss': ('Possessions', {'width': 110}),
+        'team': ('Team', {'width': 80, 'rowSpan': JsCode(span), 'cellClassRules': {'cell-span': 'value === "PHI"'}}),
+        'poss': ('Possessions', {'width': 120}),
         'mp': ('mp', {'width': 80}),
-        'raptor_total': ('RAPTOR', {**PRECISION_TWO, 'width': 100}),
-        'war_total': ('WAR', {**PRECISION_TWO, 'width': 80}),
-        'pace_impact': ('Pace Impact', {**PRECISION_TWO, 'width': 120})
+        'raptor_total': ('RAPTOR', {**PRECISION_TWO, 'width': 100, 'hide': True}),
+        'war_total': ('WAR', {**PRECISION_TWO, 'width': 80, 'hide': True}),
+        'pace_impact': ('Pace Impact', {**PRECISION_TWO, 'width': 120}),
+        'metrics': ('Metrics', dict(children=[
+            {'field': 'raptor_total', 'headerName': 'RAPTOR', **PRECISION_TWO, 'width': 100},
+            {'field': 'war_total', 'headerName': 'WAR', **PRECISION_TWO, 'width': 80}]))
     }
 
     row_number = st.number_input('Number of rows', min_value=0, value=20)
@@ -34,7 +53,9 @@ with st.echo(code_location='above'):
         fit_columns=True,
         selection='multiple',  # or 'single', or None
         use_checkbox='True',  # or False by default
-        max_height=300
+        max_height=300,
+        grid_options=go,
+        css=css
     )
 
 if data['selected_rows']:
