@@ -22,3 +22,8 @@ icon = ":high_brightness:"
 path = "pages/edit.py"
 name = "Cells Editing"
 icon = ":pencil2:"
+
+[[pages]]
+path = "pages/about.py"
+name = "About"
+icon = ":question:"
