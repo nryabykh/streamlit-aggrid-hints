@@ -29,15 +29,8 @@ def draw_grid(
         key=None,
         css: dict = None
 ):
-    if formatter is None:
-        formatter = {}
-    cols = (
-        [col for col in list(formatter.keys()) if col in df.columns]
-        if formatter
-        else df.columns
-    )
-    gb = GridOptionsBuilder.from_dataframe(df[cols])
-    gb.configure_selection(selection_mode=selection, use_checkbox=use_checkbox)
+
+    gb = GridOptionsBuilder()
     gb.configure_default_column(
         filterable=True,
         groupable=False,
@@ -52,8 +45,10 @@ def draw_grid(
     for latin_name, (cyr_name, style_dict) in formatter.items():
         gb.configure_column(latin_name, header_name=cyr_name, **style_dict)
 
+    gb.configure_selection(selection_mode=selection, use_checkbox=use_checkbox)
+
     return AgGrid(
-        df[cols],
+        df,
         gridOptions=gb.build(),
         update_mode=GridUpdateMode.SELECTION_CHANGED | GridUpdateMode.VALUE_CHANGED,
         allow_unsafe_jscode=True,
