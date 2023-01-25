@@ -1,4 +1,5 @@
 import streamlit as st
+from st_aggrid import JsCode
 from st_pages import add_page_title
 
 from src import agstyler, helper
@@ -20,11 +21,11 @@ with st.echo(code_location='above'):
     formatter = {
         'player_name': ('Player', PINLEFT),
         'team': ('Team', {'width': 80}),
-        'poss': ('Possessions', {'width': 110}),
+        'poss': ('Possessions', {'width': 120}),
         'mp': ('mp', {'width': 80}),
+        'pace_impact': ('Pace Impact', {**PRECISION_TWO, 'width': 120}),
         'raptor_total': ('RAPTOR', {**PRECISION_TWO, 'width': 100}),
         'war_total': ('WAR', {**PRECISION_TWO, 'width': 80}),
-        'pace_impact': ('Pace Impact', {**PRECISION_TWO, 'width': 120})
     }
 
     row_number = st.number_input('Number of rows', min_value=0, value=20)
@@ -34,7 +35,7 @@ with st.echo(code_location='above'):
         fit_columns=True,
         selection='multiple',  # or 'single', or None
         use_checkbox='True',  # or False by default
-        max_height=300
+        max_height=300,
     )
 
 if data['selected_rows']:
