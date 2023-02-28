@@ -1,6 +1,6 @@
 # streamlit-aggrid-hints
 
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/nryabykh/streamlit-aggrid-hints/app.py)
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_red.svg)](https://share.streamlit.io/nryabykh/streamlit-aggrid-hints/app.py)
 
 
 This repo contains a source code for a Streamlit application that illustrates some tips and tricks for using AgGrid in Streamlit apps, as well as some non-AgGrid related hints. 
