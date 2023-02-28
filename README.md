@@ -1,8 +1,10 @@
 # streamlit-aggrid-hints
 
-This repo contains a source code for a Streamlit application illustrating some tips and tricks about using AgGrid in Streamlit apps. 
+This repo contains a source code for a Streamlit application that illustrates some tips and tricks for using AgGrid in Streamlit apps, as well as some non-AgGrid related hints. 
 
-Detailed description you can find in this article: [Enhancing your Streamlit tables with AgGrid: advanced tips and tricks | Medium](https://medium.com/@nikolayryabykh/250d4b57903?source=friends_link&sk=e6ca868eb075fee7b4f76899e8ee2708).
+Blog posts referenced this repo: 
+- [Enhancing your Streamlit tables with AgGrid: advanced tips and tricks | Medium](https://medium.com/@nikolayryabykh/250d4b57903?source=friends_link&sk=e6ca868eb075fee7b4f76899e8ee2708)
+- [Tracking and Displaying Changes in the Streamlit App | Medium](https://medium.com/@nikolayryabykh/tracking-and-displaying-changes-in-the-streamlit-app-8bf882f2b24f?source=friends_link&sk=ed403200724cf456d8dcdf3ba59b46b5)
 
 Data source: https://data.fivethirtyeight.com/
 
